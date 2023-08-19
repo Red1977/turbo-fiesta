@@ -30,7 +30,7 @@ class Playground {
         // Our built-in 'ground' shape. Params: name, width, depth, subdivs, scene
         var ground = BABYLON.Mesh.CreateGround("ground1", 6, 6, 2, scene);
         let groundMaterial = new BABYLON.StandardMaterial("Ground Material", scene);
-        groundMaterial.diffuseColor = BABYLON.Color3.Purple();
+        groundMaterial.diffuseColor = BABYLON.Color3.Random();
         ground.material = groundMaterial;
 
         return scene;
