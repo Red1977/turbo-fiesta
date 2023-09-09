@@ -1,7 +1,7 @@
 import { initializeBabylonApp } from "app_package";
 
-document.body.style.width = "100%";
-document.body.style.height = "100%";
+document.body.style.width = "80%";
+document.body.style.height = "80%";
 document.body.style.margin = "0";
 document.body.style.padding = "0";
 
@@ -18,8 +18,8 @@ document.body.appendChild(div);
 
 const canvas = document.createElement("canvas");
 canvas.id = "renderCanvas";
-canvas.style.width = "100%";
-canvas.style.height = "100%";
+canvas.style.width = "80%";
+canvas.style.height = "80%";
 canvas.style.display = "block";
 div.appendChild(canvas);
 
