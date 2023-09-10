@@ -26,7 +26,12 @@ module.exports = {
                 resolve: {
                     fullySpecified: false
                 }
-            }
+            },
+            {
+                test: /\.js$/,
+                enforce: "pre",
+                use: ["source-map-loader"],
+            },
         ],
     }
 };

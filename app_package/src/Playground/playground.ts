@@ -9,7 +9,15 @@ class Playground {
         // This creates and positions a free camera (non-mesh)
         const camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 5, -10), scene);
 
-        const loaded_assets = BABYLON.SceneLoader.ImportMesh("blender_scene", "/assets/", "pump_bottle_camera.glb", scene);
+        const container = BABYLON.AssetContainer;
+
+        BABYLON.SceneLoader.LoadAssetContainer("http://127.0.0.1:8181/assets/", "pump_bottle_for_babylon.glb", scene, function (container) {
+            const meshes = container.meshes;
+            const materials = container.materials;
+            console.log('assetContainer cameras', container.cameras);
+            console.log('assetContainer meshes', container.meshes);
+            container.addAllToScene();
+          });
 
         // This targets the camera to scene origin
         camera.setTarget(BABYLON.Vector3.Zero());
