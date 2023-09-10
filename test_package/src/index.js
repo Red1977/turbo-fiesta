@@ -1,7 +1,7 @@
 import { initializeBabylonApp } from "app_package";
 
-document.body.style.width = "80%";
-document.body.style.height = "80%";
+document.body.style.width = "100%";
+document.body.style.height = "100%";
 document.body.style.margin = "0";
 document.body.style.padding = "0";
 
@@ -11,15 +11,15 @@ title.style.textAlign = "center";
 document.body.appendChild(title);
 
 const div = document.createElement("div");
-div.style.width = "60%";
+div.style.width = "80%";
 div.style.margin = "0 auto";
-div.style.aspectRatio = "16 / 9";
+div.style.aspectRatio = "1 / 1";
 document.body.appendChild(div);
 
 const canvas = document.createElement("canvas");
 canvas.id = "renderCanvas";
-canvas.style.width = "80%";
-canvas.style.height = "80%";
+canvas.style.width = "100%";
+canvas.style.height = "100%";
 canvas.style.display = "block";
 div.appendChild(canvas);
 
