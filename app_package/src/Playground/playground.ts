@@ -11,7 +11,7 @@ class Playground {
 
         const container = BABYLON.AssetContainer;
 
-        BABYLON.SceneLoader.LoadAssetContainer("http://127.0.0.1:8181/assets/", "pump_bottle_label_and_camera.glb", scene, function (container) {
+        BABYLON.SceneLoader.LoadAssetContainer("http://127.0.0.1:8181/assets/", "pump_bottle_label_camera_sphere.glb", scene, function (container) {
             const meshes = container.meshes;
             const materials = container.materials;
             console.log('assetContainer cameras', container.cameras);
@@ -28,7 +28,7 @@ class Playground {
         // This attaches the camera to the canvas
         //camera.attachControl(canvas, true);
 
-        var layer = new BABYLON.Layer('','http://127.0.0.1:8181/assets/pump_bottle_render_layers_beauty.png', scene, true);
+        var layer = new BABYLON.Layer('','http://127.0.0.1:8181/assets/pink_label_render.png', scene, true);
 
         
 
