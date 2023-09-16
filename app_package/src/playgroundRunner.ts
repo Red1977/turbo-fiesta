@@ -14,7 +14,7 @@ export function initializeBabylonApp(options: InitializeBabylonAppOptions) {
     }
 
     const canvas = options.canvas;
-    const engine = new Engine(canvas);
+    const engine = new Engine(canvas, true, { stencil: true });
     const scene = CreatePlaygroundScene(engine, canvas);
     engine.runRenderLoop(() => {
         scene.render();
