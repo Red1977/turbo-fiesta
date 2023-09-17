@@ -22,12 +22,48 @@ class Playground {
 
             //highlight a mesh
             const hl = new BABYLON.HighlightLayer("hl1", scene);
-            hl.addMesh(container.meshes[2], BABYLON.Color3.Teal());
+
+            //Set up mouseover event
+            let actionManager = new BABYLON.ActionManager(scene);
+            container.meshes[2].actionManager = actionManager;
+
+            container.meshes[2].isPickable = true;
+
+            //if cursor is hovering over it,  highlight of the mesh
+            actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPointerOverTrigger, function(ev){
+                hl.addMesh(container.meshes[2], BABYLON.Color3.Teal());
+            }));
+            //Remove highlight when cursor no longer over mesh
+            actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPointerOutTrigger, function(ev){
+                hl.removeAllMeshes();
+            }));
+
+            //recognise click event
+            actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger, function(ev){
+                console.log("mesh clicked");
+                const input = document.createElement('input');
+                input.type = 'file';
+
+                input.onchange = () => {
+                    const files = Array.from(input.files);
+                    const file = files[0];
+
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const contents = e.target.result;
+
+                        var labelTexture = new BABYLON.Texture(contents, scene);
+                        labelTexture.name = "labelTex";
+
+                        container.meshes[2].material.albedoTexture = labelTexture;
+                    };
+                    reader.readAsDataURL(file);
+                };
+                input.click();
+            }));
+            
             hl.blurHorizontalSize = 0.1;
             hl.blurVerticalSize = 0.1;
-            console.log('highlight blurHorizontalSize',hl.blurHorizontalSize);
-
-            console.log('Finished loading');
  
         });
 
@@ -36,9 +72,6 @@ class Playground {
 
         // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
         const light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
-
-        console.log('scene cameras', scene.cameras);
-        console.log('scene meshes', scene.meshes);
 
         return scene;
     }
