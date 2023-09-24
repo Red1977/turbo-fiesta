@@ -54,16 +54,20 @@ class Playground {
 
                         var labelTexture = new BABYLON.Texture(contents, scene);
                         labelTexture.name = "labelTex";
+                        //labelTexture.uScale = -1;
+                        labelTexture.vScale = -1;
+                        
 
                         container.meshes[2].material.albedoTexture = labelTexture;
+                        container.meshes[2].material?.backFaceCulling = true;
                     };
                     reader.readAsDataURL(file);
                 };
                 input.click();
             }));
             
-            hl.blurHorizontalSize = 0.1;
-            hl.blurVerticalSize = 0.1;
+            hl.blurHorizontalSize = 1;
+            hl.blurVerticalSize = 1;
  
         });
 
@@ -72,6 +76,7 @@ class Playground {
 
         // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
         const light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
+        light.intensity = 10.0;
 
         return scene;
     }
